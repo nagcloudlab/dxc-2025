@@ -33,11 +33,6 @@ class Apple{
 
 /*
 
-// Function as a first class citizen
-
-    ApplePredicate greenApplePredicate=(Apple apple) -> {
-                    return "Green".equals(apple.getColor());
-                }
 
  */
 
