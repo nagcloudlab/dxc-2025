@@ -5,7 +5,15 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/play-with-java/pom.xml" />
+        <option value="$PROJECT_DIR$/math-lib/pom.xml" />
+        <option value="$PROJECT_DIR$/money-transfer-system-v1/pom.xml" />
+        <option value="$PROJECT_DIR$/money-transfer-system/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/money-transfer-system-v1/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="17" project-jdk-type="JavaSDK">

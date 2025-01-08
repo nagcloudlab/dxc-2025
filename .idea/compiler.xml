@@ -7,7 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="play-with-java" />
+        <module name="math-lib" />
+        <module name="money-transfer-system" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="money-transfer-system-v1" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>

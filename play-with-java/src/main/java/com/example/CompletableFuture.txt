@@ -1,0 +1,41 @@
+
+Why CompletableFuture Can Be Inefficient
+========================================
+
+ -> Limited Concurrency Control:
+
+    Relies on a shared ForkJoinPool, leading to potential thread starvation and bottlenecks.
+
+ -> Fixed Thread Pool Size:
+
+    The default thread pool size doesn't scale well under high load.
+
+ -> Lack of Reactive Features:
+
+    Doesn't support backpressure or flow control for dynamic workloads.
+
+ -> Verbose Error Handling:
+
+    Handling exceptions requires explicit chaining (e.g., exceptionally, handle).
+
+ -> Complex Workflow Chaining:
+
+    Deeply nested workflows become harder to read and maintain.
+
+ -> Weak Timeout and Cancellation Support:
+
+    Requires extra code to handle cancellations or timeouts for complex tasks.
+
+Better Alternatives
+
+  -> Reactive Frameworks (e.g., Project Reactor, RxJava):
+
+     Advanced features like backpressure and stream processing.
+
+  -> Project Loom (Java 19+):
+
+    Virtual threads for easier concurrency with minimal overhead.
+
+  -> Custom Executors:
+
+    Tailored thread pool management for better scalability.
