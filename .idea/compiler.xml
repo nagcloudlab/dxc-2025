@@ -6,12 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="play-with-java" />
-        <module name="math-lib" />
-        <module name="money-transfer-system" />
+        <module name="01-play-with-java" />
+        <module name="02-money-transfer-system" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="math-lib" target="17" />
+      <module name="modules" target="17" />
       <module name="money-transfer-system-v1" target="17" />
     </bytecodeTargetLevel>
   </component>
