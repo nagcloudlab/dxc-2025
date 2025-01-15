@@ -4,6 +4,7 @@ import com.example.model.Account;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public final class InMemoryAccountRepository implements AccountRepository{
 
@@ -20,8 +21,8 @@ public final class InMemoryAccountRepository implements AccountRepository{
     }
 
     @Override
-    public Account loadAccount(String number) {
-        return accountMap.get(number);
+    public Optional<Account> loadAccount(String number) {
+        return Optional.ofNullable(accountMap.get(number));
     }
 
     @Override
