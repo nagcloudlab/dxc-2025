@@ -1,11 +1,13 @@
 package com.example;
 
+import com.example.config.MoneyTransferSystemConfiguration;
 import com.example.repository.AccountRepository;
 import com.example.repository.AccountRepositoryFactory;
 import com.example.service.TransferService;
 import com.example.service.UPITransferService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ConfigurableApplicationContext;
 
 public class Application {
 
@@ -14,10 +16,10 @@ public class Application {
     public static void main(String[] args) {
 
         LOGGER.info("""
-        ===========================================
-        =     Welcome to the Money-Transfer App   =
-        ===========================================
-        """);
+                ===========================================
+                =     Welcome to the Money-Transfer App   =
+                ===========================================
+                """);
 
         LOGGER.info("=== Application Starting ===");
 
@@ -25,21 +27,24 @@ public class Application {
         //-----------------------------------------------
         // Init / Boot phase
         //-----------------------------------------------
-        // 1) Decide which repository to use
-        var chosenTech = "JDBC"; // or "JPA"
-        var accountRepository = AccountRepositoryFactory.getAccountRepository(chosenTech);
-        // 2) Manually inject into UPITransferService
-        var transferService = new UPITransferService(accountRepository); // wiring based IOC
+
+
+        ConfigurableApplicationContext applicationContext = null;
+        //applicationContext = new org.springframework.context.support.ClassPathXmlApplicationContext("applicationContext.xml");
+        applicationContext = new org.springframework.context.annotation.AnnotationConfigApplicationContext(MoneyTransferSystemConfiguration.class);
+
 
         System.out.println();
-
 
         //-----------------------------------------------
         // Use phase
         //-----------------------------------------------
 
+        // 1) Get the transfer service
+        TransferService transferService = applicationContext.getBean(TransferService.class);
+
         // 3) Use the transfer service
-        transferService.transfer("1", "2", 1000.0);
+        transferService.transfer("ACC001", "ACC002", 100.0);
 
         System.out.println();
 
