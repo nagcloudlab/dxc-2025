@@ -19,13 +19,11 @@ public final class JdbcAccountRepository implements AccountRepository {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(JdbcAccountRepository.class);
 
-    //private DataSource dataSource; // connection pool
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
     public JdbcAccountRepository(JdbcTemplate jdbcTemplate) {
         LOGGER.info("JdbcAccountRepository instance created");
-        //this.dataSource = dataSource;
         this.jdbcTemplate = jdbcTemplate;
     }
 

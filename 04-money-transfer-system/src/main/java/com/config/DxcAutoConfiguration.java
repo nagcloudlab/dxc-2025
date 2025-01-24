@@ -10,15 +10,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConditionalOnWebApplication
 public class DxcAutoConfiguration {
-
     @Bean
     public String bean1() {
         return "bean1";
     }
-
     @Bean
     public String bean2() {
         return "bean2";
     }
-
 }

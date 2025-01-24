@@ -8,16 +8,15 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
 @Configuration
-//@Import({
-//        DxcAutoConfiguration.class
-//})
 @ComponentScan(basePackages = "com.example")
 @EnableAutoConfiguration // apply many conditions to enable auto-configuration
 @EnableTransactionManagement
+//@PropertySource("classpath:foobar.properties")
 public class Application {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Application.class);
@@ -49,14 +48,7 @@ public class Application {
         //-----------------------------------------------
 
         TransferService transferService = applicationContext.getBean(TransferService.class);
-        transferService.transfer("ACC001", "ACC002", 100.0);
-
-//        String bean1=applicationContext.getBean("bean1",String.class);
-//        System.out.println("Bean1: "+bean1);
-//
-//        String bean2=applicationContext.getBean("bean2",String.class);
-//        System.out.println("Bean2: "+bean2);
-
+        transferService.transfer("ACC001", "ACC002", 100.00);
 
         System.out.println();
 

@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.DxcConfigProperties;
 import com.example.exception.AccountNotFoundException;
 import com.example.exception.InsufficientFundsException;
 import com.example.model.Account;
@@ -10,6 +11,7 @@ import com.example.repository.JdbcAccountRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,8 +21,19 @@ import java.time.LocalDateTime;
 public class UPITransferService implements TransferService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UPITransferService.class);
-
     private final AccountRepository accountRepository; // DI by constructor
+
+    @Value("${transfer.limit:100000}")
+    private long transferLimit;
+
+//    @Value("${foo.config:foo}")
+//    private String fooConfig;
+//    @Value("${bar.config:bar}")
+//    private String barConfig;
+
+
+    @Autowired
+    private DxcConfigProperties dxcConfigProperties;
 
     // DI
     @Autowired
@@ -41,11 +54,19 @@ public class UPITransferService implements TransferService {
     public void transfer(String fromAccountNumber, String toAccountNumber, double amount) {
         LOGGER.info("Initiating transfer of {} from {} to {}", amount, fromAccountNumber, toAccountNumber);
 
+        System.out.println("--------------------");
+//        System.out.println("fooConfig = " + fooConfig);
+//        System.out.println("barConfig = " + barConfig);
+        System.out.println("dxcConfigProperties = " + dxcConfigProperties);
+        System.out.println("--------------------");
+
+
+        if (amount > transferLimit) {
+            throw new IllegalArgumentException("Transfer limit exceeded: " + transferLimit);
+        }
+
         // step-1: load from-account
         Account fromAccount = accountRepository.loadAccount(fromAccountNumber)
-//                .ifPresent(account -> {
-//                    LOGGER.info("Account found: {}", account);
-//                })
                 .orElseThrow(() -> {
                     LOGGER.error("From-account not found: {}", fromAccountNumber);
                     return new AccountNotFoundException("From-account not found: " + fromAccountNumber);
