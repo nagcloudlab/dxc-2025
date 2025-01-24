@@ -1,0 +1,70 @@
+package com.example;
+
+import com.example.service.TransferService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+
+@Configuration
+//@Import({
+//        DxcAutoConfiguration.class
+//})
+@ComponentScan(basePackages = "com.example")
+@EnableAutoConfiguration // apply many conditions to enable auto-configuration
+@EnableTransactionManagement
+public class Application {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(Application.class);
+
+    public static void main(String[] args) {
+
+        LOGGER.info("""
+                ===========================================
+                =     Welcome to the Money-Transfer App   =
+                ===========================================
+                """);
+
+        LOGGER.info("=== Application Starting ===");
+
+
+        //-----------------------------------------------
+        // Init / Boot phase
+        //-----------------------------------------------
+
+
+        ConfigurableApplicationContext applicationContext = null;
+        applicationContext= SpringApplication.run(Application.class);
+
+
+        System.out.println();
+
+        //-----------------------------------------------
+        // Use phase
+        //-----------------------------------------------
+
+        TransferService transferService = applicationContext.getBean(TransferService.class);
+        transferService.transfer("ACC001", "ACC002", 100.0);
+
+//        String bean1=applicationContext.getBean("bean1",String.class);
+//        System.out.println("Bean1: "+bean1);
+//
+//        String bean2=applicationContext.getBean("bean2",String.class);
+//        System.out.println("Bean2: "+bean2);
+
+
+        System.out.println();
+
+
+        //-----------------------------------------------
+        // Destroy phase
+        //-----------------------------------------------
+
+        LOGGER.info("=== Application Finished ===");
+    }
+}
