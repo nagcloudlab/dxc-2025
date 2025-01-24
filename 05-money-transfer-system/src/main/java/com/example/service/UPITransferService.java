@@ -24,15 +24,6 @@ public class UPITransferService implements TransferService {
     @Value("${transfer.limit:100000}")
     private long transferLimit;
 
-//    @Value("${foo.config:foo}")
-//    private String fooConfig;
-//    @Value("${bar.config:bar}")
-//    private String barConfig;
-
-
-//    @Autowired
-//    private DxcConfigProperties dxcConfigProperties;
-
     // DI
 //    @Autowired
     public UPITransferService(AccountRepository accountRepository) {
@@ -40,7 +31,6 @@ public class UPITransferService implements TransferService {
         LOGGER.info("UPITransferService instance created with {}",
                 accountRepository.getClass().getSimpleName());
     }
-
 
     // AOP
     // every transfer is a transaction , ACID
@@ -52,25 +42,19 @@ public class UPITransferService implements TransferService {
     public void transfer(String fromAccountNumber, String toAccountNumber, double amount) {
         LOGGER.info("Initiating transfer of {} from {} to {}", amount, fromAccountNumber, toAccountNumber);
 
-//        System.out.println("--------------------");
-//        System.out.println("fooConfig = " + fooConfig);
-//        System.out.println("barConfig = " + barConfig);
-//        System.out.println("dxcConfigProperties = " + dxcConfigProperties);
-//        System.out.println("--------------------");
-
 
         if (amount > transferLimit) {
             throw new IllegalArgumentException("Transfer limit exceeded: " + transferLimit);
         }
 
         // step-1: load from-account
-        Account fromAccount = accountRepository.loadAccount(fromAccountNumber)
+        Account fromAccount = accountRepository.findById(fromAccountNumber)
                 .orElseThrow(() -> {
                     LOGGER.error("From-account not found: {}", fromAccountNumber);
                     return new AccountNotFoundException("From-account not found: " + fromAccountNumber);
                 });
         // step-2: load to-account
-        Account toAccount = accountRepository.loadAccount(toAccountNumber)
+        Account toAccount = accountRepository.findById(toAccountNumber)
                 .orElseThrow(() -> {
                     LOGGER.error("To-account not found: {}", toAccountNumber);
                     return new AccountNotFoundException("To-account not found: " + toAccountNumber);
@@ -86,13 +70,13 @@ public class UPITransferService implements TransferService {
         toAccount.setBalance(toAccount.getBalance() + amount);
 
         // step-5 & 6: update
-        accountRepository.updateAccount(fromAccount);
+        accountRepository.save(fromAccount);
 
         if (1 == 2)
             throw new RuntimeException("Simulating a runtime exception");
 
 
-        accountRepository.updateAccount(toAccount);
+        accountRepository.save(toAccount);
 
         // create snapshots for logging or auditing
         var fromSnapshot = new AccountSnapshot(fromAccount.getNumber(), fromAccount.getBalance());

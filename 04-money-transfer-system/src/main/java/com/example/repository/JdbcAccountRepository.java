@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import javax.swing.*;
@@ -14,14 +15,15 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 
-@Component
-public final class JdbcAccountRepository implements AccountRepository {
+//@Component
+@Repository // This annotation is used to indicate that the class provides the mechanism for storage, retrieval, search, update and delete operation on objects.
+public class JdbcAccountRepository implements AccountRepository {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(JdbcAccountRepository.class);
 
     private JdbcTemplate jdbcTemplate;
 
-    @Autowired
+    @Autowired // from spring-5.1, this annotation is optional for constructor injection
     public JdbcAccountRepository(JdbcTemplate jdbcTemplate) {
         LOGGER.info("JdbcAccountRepository instance created");
         this.jdbcTemplate = jdbcTemplate;
@@ -49,8 +51,5 @@ public final class JdbcAccountRepository implements AccountRepository {
     }
 
 
-    public void specialJdbcMethod() {
-        LOGGER.info("Special JDBC method called");
-    }
 
 }

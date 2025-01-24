@@ -31,4 +31,5 @@ public final class JpaAccountRepository implements AccountRepository {
                 account.getNumber(), account.getBalance());
         // In real scenario, update DB
     }
+
 }

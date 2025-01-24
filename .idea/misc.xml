@@ -11,15 +11,11 @@
         <option value="$PROJECT_DIR$/modules/pom.xml" />
         <option value="$PROJECT_DIR$/04-money-transfer-system ( auto config )/pom.xml" />
         <option value="$PROJECT_DIR$/03-money-transfer-system ( manual config )/pom.xml" />
-        <option value="$PROJECT_DIR$/02-money-transfer-system/pom.xml" />
-        <option value="$PROJECT_DIR$/03-money-transfer-system/pom.xml" />
-        <option value="$PROJECT_DIR$/04-money-transfer-system/pom.xml" />
+        <option value="$PROJECT_DIR$/06-money-transfer-system/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
-        <option value="$PROJECT_DIR$/02-money-transfer-system/pom.xml" />
-        <option value="$PROJECT_DIR$/03-money-transfer-system/pom.xml" />
         <option value="$PROJECT_DIR$/math-lib/pom.xml" />
         <option value="$PROJECT_DIR$/modules/pom.xml" />
         <option value="$PROJECT_DIR$/money-transfer-system-v1/pom.xml" />
