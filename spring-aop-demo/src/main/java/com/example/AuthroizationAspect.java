@@ -1,4 +1,4 @@
-package com.example.spring_aop_demo;
+package com.example;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 public class AuthroizationAspect{
     // before advice
     // pointcut -> expression that defines where the advice should be applied
-
     @Before("execution(* *(..))")
     public void checkAuthorization(){
         System.out.println("Checking Authorization");
