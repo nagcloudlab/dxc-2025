@@ -6,12 +6,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Aspect // an implementation cross-cutting concerns
-public class AuthroizationAspect{
+public class SampleAspect{
     // before advice
     // pointcut -> expression that defines where the advice should be applied
-    @Before("execution(* *(..))")
+    @Before("execution(void com.example.TransferService.*(..))")
     public void checkAuthorization(){
-        System.out.println("Checking Authorization");
+
     }
 }
 
