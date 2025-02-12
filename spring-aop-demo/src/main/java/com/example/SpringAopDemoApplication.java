@@ -17,9 +17,17 @@ public class SpringAopDemoApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(TransferService transferService){
 		return args -> {
-			System.out.println(transferService.getClass());
-			transferService.upiTransfer();
-			transferService.neftTransfer();
+			try {
+				System.out.println();
+				System.out.println(transferService.getClass());
+				System.out.println();
+				transferService.upiTransfer();
+				System.out.println();
+				transferService.neftTransfer();
+				System.out.println();
+			}catch (Exception e){
+				System.out.println("Exception: "+e.getMessage());
+			}
 		};
 	}
 
