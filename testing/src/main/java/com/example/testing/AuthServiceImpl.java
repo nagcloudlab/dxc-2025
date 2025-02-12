@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 // author : team-1
 
 @Service
-public class AuthServiceImpl {
+public class AuthServiceImpl implements AuthService {
 
     private final AccountRepository accountRepository;
 
@@ -14,6 +14,7 @@ public class AuthServiceImpl {
         this.accountRepository = accountRepository;
     }
 
+    @Override
     public boolean authenticate(String username, String password) {
         Account account = accountRepository.findByUsername(username);
         if (account != null) {
