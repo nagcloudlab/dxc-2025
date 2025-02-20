@@ -1,0 +1,20 @@
+server:
+  port: 8081
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: web-client
+            provider: keycloak
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:8081/login/oauth2/code/keycloak
+            scope: openid, profile
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8080/realms/myrealm
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/myrealm
