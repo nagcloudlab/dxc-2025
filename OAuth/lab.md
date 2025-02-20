@@ -1,0 +1,51 @@
+
+
+1. Auth Code grant Flow
+
+Get Authorization Code
+
+```curl
+http://localhost:8080/realms/myrealm/protocol/openid-connect/auth?client_id=web-client&response_type=code&scope=openid&redirect_uri=http://localhost:8181/login/oauth2/code/keycloak
+
+```
+
+
+Exchange Code for Access Token
+
+```curl
+    curl -X POST "http://localhost:8080/realms/myrealm/protocol/openid-connect/token" \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    -d "grant_type=authorization_code" \
+    -d "client_id=web-client" \
+    -d redirect_uri=http://localhost:8181/login/oauth2/code/keycloak \
+    -d "code=73bc8a6a-0812-4878-8c2a-d6e11ef829a9.cfb52557-6ff0-491e-8698-9e43c36912fb.463ad6ff-2982-4cce-9749-4de2d7daff53" 
+```
+
+
+Access Resource
+
+```curl
+    curl -X GET "http://localhost:8181/api/private" \
+    -H "Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJNRlplWUZGdVprVGdaZ2RGclZVNDRmX3lhN0JlQ3BMMWUyWDVWd08xZVJzIn0.eyJleHAiOjE3NDAwNjI4MjcsImlhdCI6MTc0MDA2MjUyNywiYXV0aF90aW1lIjoxNzQwMDYyMzUwLCJqdGkiOiI5YWZiYzRhZC02NTNhLTRlZDAtOGE4Mi0yNWI5YWFiNjc5ZjYiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvcmVhbG1zL215cmVhbG0iLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiMzQxODU2YTEtYWU4YS00MGZiLWFlNDktNDhmMzY1MWUzNDgyIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoid2ViLWNsaWVudCIsInNpZCI6ImNmYjUyNTU3LTZmZjAtNDkxZS04Njk4LTllNDNjMzY5MTJmYiIsImFjciI6IjAiLCJhbGxvd2VkLW9yaWdpbnMiOlsiaHR0cDovL2xvY2FsaG9zdDo4MTgxIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLW15cmVhbG0iLCJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoiVXNlciBPbmUgTiIsInByZWZlcnJlZF91c2VybmFtZSI6InVzZXIxIiwiZ2l2ZW5fbmFtZSI6IlVzZXIgT25lIiwiZmFtaWx5X25hbWUiOiJOIiwiZW1haWwiOiJ1c2VyMUBtYWlsLmNvbSJ9.Cqj8_wEwYub_3S0P_uhzNFN52asvQE6GafoxgvmBCHZXbAiIf_iI186V0fryUOxsxENoE9N_nxX0bwEFjaKzA2dCPgkk3Peqib9mK-ee3J1nUJp4JF2LoH1ITHMaEwh17knP78Kh_kSsiueg2pieZBlojkfL9fyi4TaybgziprQvVNJtNSEswGA5ThVwg8lwui3y453jvB0j6XmY4vl4IOfsWgVP0UmDdPl5CLkn0aMfIoT6j3ok6INXzNPen_SKSgJEBqH30amsW9FMLNcGnHsYmGB_oZIKwINtSk2DXshKCcysVMhzNP0yk77iL5hXWmX3i4Us0ecHRxk0g-MFww"
+```
+    
+
+
+2. Client Credentials Flow
+
+Get Access Token
+
+```curl
+    curl -X POST "http://localhost:8080/realms/myrealm/protocol/openid-connect/token" \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    -d "grant_type=client_credentials" \
+    -d "client_id=bar" \
+    -d "client_secret=2AuWyhjHUI7NLnUsDQ3AcOtHXDeILgl7" 
+
+```
+
+Access Resource
+
+```curl
+    curl -X GET "http://localhost:8181/api/private" \
+    -H "Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJNRlplWUZGdVprVGdaZ2RGclZVNDRmX3lhN0JlQ3BMMWUyWDVWd08xZVJzIn0.eyJleHAiOjE3NDAwNjM1NDQsImlhdCI6MTc0MDA2MzI0NCwianRpIjoiM2M0OTdmOGYtYTNjNi00MGZmLTk3MmYtMDBiMjRlMjg4MWJiIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9teXJlYWxtIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6IjZjNDYwYzUyLTU1ZTMtNDc1My05ZTM0LWNjNTlkN2E4MDMxOCIsInR5cCI6IkJlYXJlciIsImF6cCI6ImJhciIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiLyoiXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImRlZmF1bHQtcm9sZXMtbXlyZWFsbSIsIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJiYXIiOnsicm9sZXMiOlsidW1hX3Byb3RlY3Rpb24iXX0sImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoicHJvZmlsZSBlbWFpbCIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiY2xpZW50SG9zdCI6IjE3Mi4yOC4wLjEiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJzZXJ2aWNlLWFjY291bnQtYmFyIiwiY2xpZW50QWRkcmVzcyI6IjE3Mi4yOC4wLjEiLCJjbGllbnRfaWQiOiJiYXIifQ.Cc3hLRKJCY8KTIEZeBv8QxuhnbpEGwccvHAmlM4uQbcodJ5OTQQtRG16LEIK6uFU6ICn2-0IMLyPV4gsMnj2EqbbVvIySSYEUGHshRK9TLfiOHyXgqrE3esQlsTVBj2HWj8SOSsgYeUiSAM_bp014VMVa7KILshYn1s1wq3COqGC6pIHLgwEDutvSReLtligg_apqbZDeQb6bKop5tey0KC9rBJoLVRCX2y3Q8wDlK_crH2VOOpdcM-nyIv2ZVtDr0GPYsfjEI_6srvqYdX2WCkJ6qqZnVZzucWwZT2wnuy0pvePfJmPQ1wyc8AOjZmNgFR-BFr0FFMmaICJ98WYxA"
