@@ -1,0 +1,8 @@
+
+
+
+curl -X POST "http://localhost:8080/api/v1/auth/login?username=user123"
+curl -X POST "http://localhost:8080/api/v1/transfer" \
+     -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMTIzIiwiaWF0IjoxNzQxNzgzODYzLCJleHAiOjE3NDE3ODc0NjN9.bHq-VnYzz8KDzwg3oUpZ_0fjsn52Cza_bllmBw9A1cE" \
+     -H "Content-Type: application/json" \
+     -d '{"fromAccountNum":"ACC001","toAccountNum":"ACC002","amount":100}'
