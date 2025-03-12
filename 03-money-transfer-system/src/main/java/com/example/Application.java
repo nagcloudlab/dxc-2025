@@ -1,10 +1,7 @@
 package com.example;
 
 import com.example.config.MoneyTransferSystemConfiguration;
-import com.example.repository.AccountRepository;
-import com.example.repository.AccountRepositoryFactory;
 import com.example.service.TransferService;
-import com.example.service.UPITransferService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ConfigurableApplicationContext;

@@ -7,10 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import javax.sql.DataSource;
-import javax.swing.*;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.Optional;
 
 
