@@ -1,0 +1,56 @@
+
+
+
+steps to DESING REST API  (Representational State Transfer)
+--------------------------------------------------------------
+
+1. Identify the resources & relationship or actions that you want to expose.
+
+    resource(s)
+    ------------
+    - account
+    - statement
+
+    actions
+    -------
+    - transfer
+
+2. Identify the URIs
+
+    /api/v1/accounts
+    /api/v1/accounts/{account_number}
+    /api/v1/accounts/{account_number}/statements
+
+    /api/v1/transfer
+
+3. Identify the HTTP methods
+
+    GET     - to read data
+    POST    - to create data
+    PUT     - to update data
+    DELETE  - to delete data
+
+    /api/v1/accounts
+        GET     - to get all accounts
+    /api/v1/accounts/{account_number}
+        GET     - to get account details
+
+    /api/v1/accounts/{account_number}/statements
+        GET     - to get all statements of an account
+
+    /api/v1/transfer
+        POST    - to transfer money from one account to another
+
+4. Identify resource representations
+
+    - JSON
+    - XML
+    
+5. Identify the response status codes
+
+    - 200 OK
+    - 201 Created
+    - 400 Bad Request
+    - 404 Not Found
+    - 500 Internal Server Error
+    
