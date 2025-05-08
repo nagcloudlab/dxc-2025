@@ -2,6 +2,7 @@ package com.example.accounts_service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +21,7 @@ class Account {
 class AccountController {
 	@GetMapping("/accounts/{accountNumber}")
 	public Account getAccount(@PathVariable String accountNumber) {
+		System.out.println("Fetching account details for account number: " + accountNumber);
 		Account account = new Account();
 		account.setAccountNumber(accountNumber);
 		account.setAccountHolderName("John Doe");
@@ -30,6 +32,7 @@ class AccountController {
 }
 
 @SpringBootApplication
+@EnableDiscoveryClient
 public class AccountsServiceApplication {
 
 	public static void main(String[] args) {
