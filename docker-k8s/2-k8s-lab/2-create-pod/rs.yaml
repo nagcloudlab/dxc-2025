@@ -25,4 +25,4 @@ spec:
     spec:
       containers:
       - name: nginx-container 
-        image: nginx:1.11.7
+        image: nginx:1.27.4

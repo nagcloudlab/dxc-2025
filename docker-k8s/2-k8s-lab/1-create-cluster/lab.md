@@ -33,7 +33,7 @@ kubectl get nodes
 ### delete k8s cluster
 
 ```bash
-kind delete cluster --name my-k8s-cluster
+kind delete cluster --name kind-cluster
 ```
 
 
@@ -69,14 +69,14 @@ kubectl api-resources
 ### create a namespace
 
 ```bash
-kubectl create namespace batch9
+kubectl create namespace dxc
 kubectl get namespaces
 ```
 
 ### switch to a namespace
 
 ```bash
-kubectl config set-context --current --namespace=batch9
+kubectl config set-context --current --namespace=dxc
 ```
 
 

@@ -248,6 +248,8 @@ kubectl logs hello-cronjob-28993458-mm42t
 kubectl delete cronjob hello-cronjob
 ```
 
+
+### Summary of Workload APIs  
 Pod (Manual) ->	Best for testing/debugging. No auto-restart.
 ReplicationController ->	Ensures a set number of pods. Deprecated.
 ReplicaSet ->	Ensures a set number of pods. No rolling updates.

@@ -1,0 +1,165 @@
+
+
+UI -> data + style + interaction
+Web-UI -> HTML + CSS + JS
+
+
+what javascript programs can do HTML page?
+
+using browser's APIs, javascript programs can do much magic to HTML pages
+browser Apis -> w3c recommendations
+
+browser vendors (Chrome, Firefox, Safari, Edge, etc.) implement these APIs natively in their browsers,
+absttracted to us by JavaScript objects and functions
+
+e,g DOM,XHR/fetch, Timers, etc.
+
+
+Using DOM
+-------------
+  -> can create/retrieve/update/delete HTML elements
+  -> can change CSS styles of HTML elements
+  -> can respond to user events (clicks, key presses, etc.)
+  -> ....
+
+Using XHR/fetch
+-----------------
+  -> can make HTTP requests to retrieve data from a server
+
+Using Timers
+-----------------
+  -> can execute actions in time (setTimeout, setInterval)
+
+  .....
+HTML5 APIs
+--------------
+  -> can access local storage, geolocation, canvas, audio/video, etc.
+  -> can use WebSockets for real-time communication
+  -> can use Web Workers for background processing
+  -> can use Service Workers for offline capabilities
+  -> can use WebRTC for peer-to-peer communication
+  -> can use WebAssembly for high-performance applications
+  -> can use WebGL for 3D graphics rendering
+  -> can use Fetch API for modern HTTP requests
+  -> can use Intersection Observer for lazy loading and visibility tracking
+  -> can use Mutation Observer for detecting changes in the DOM
+
+
+
+
+
+challanges while making web-ui plain javascript-code ( your own code )
+-----------------------------------------------------------------------
+
+-> browser compatibility
+-> performance issues
+-> memory leaks
+-> security vulnerabilities (XSS, CSRF, etc.)
+-> too much code
+-> code organization
+-> code re-usability
+...
+
+solution to these challenges ( legacy way )
+-------------------------------------------------
+
+-> server-side rendering (SSR)
+
+  -> jsp, php, asp, etc.
+  -> server generates HTML pages and sends them to the browser
+  -> browser renders the HTML pages
+
+limitations of SSR
+-------------------------------------------------
+
+-> slow initial load time
+-> poor user experience (no interactivity)
+-> difficult to maintain and scale
+
+solution to these challenges ( modern way )
+-------------------------------------------------
+
+-> client-side rendering (CSR)
+ 
+   -> modern browser(s)
+   -> javascript language evolution
+   +
+   -> third-party libraries and frameworks
+
+
+thid-party libraries and frameworks
+-------------------------------------------------
+
+1. jQuery ( DOM & XHR utility library )
+   -> simplifies DOM manipulation and XHR requests
+   -> provides a consistent API across browsers
+   -> reduces the amount of code needed to achieve common tasks
+
+MVC based libraries and frameworks
+----------------------------------
+
+2. Knockout.js ( MVVM )
+   -> provides data binding and templating
+   -> allows for declarative UI updates
+   -> simplifies the management of complex UIs
+3. Backbone.js ( MVC )
+    -> provides a minimalistic framework for building web applications
+    -> encourages the use of models, views, and collections
+    -> provides a consistent way to manage application state
+4. AngularJS ( MVC )
+   -> provides a complete framework for building web applications
+   -> includes data binding, dependency injection, and routing
+   -> encourages the use of components and services
+5. Ember.js ( MVC )
+   -> provides a complete framework for building ambitious web applications
+   -> includes data binding, routing, and templating
+   -> encourages the use of conventions over configuration
+6. DOJO ( MVC )
+   -> provides a complete framework for building web applications
+   -> includes data binding, templating, and routing
+   -> encourages the use of components and services
+7. Extjs ( MVC )
+   -> provides a complete framework for building web applications
+   -> includes data binding, templating, and routing
+   -> encourages the use of components and services
+....
+
+limitations with MVC pattern
+-------------------------------------------------
+
+-> complex when building large applications
+-> un-predictable data flow
+-> difficult to debug
+...
+
+
+best patterrn to build UI
+-------------------------------------------------
+
+- component-based architecture
+
+
+
+component-based libraries and frameworks
+-------------------------------------------------
+1. React.js
+   -> developed by Facebook
+   -> uses a virtual DOM for efficient rendering
+   -> encourages the use of components and hooks
+
+2. Angular 
+   -> developed by Google
+   -> uses a component-based architecture
+   -> includes dependency injection, routing, and forms
+
+3. Vue.js
+    -> developed by Evan You
+    -> uses a component-based architecture
+    -> provides a simple and flexible API
+
+4. Next.js
+   -> built on top of React
+   -> provides server-side rendering and static site generation
+   -> includes routing and API routes
+
+   ...
