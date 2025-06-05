@@ -1,45 +1,26 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { NavbarComponent } from "./navbar/navbar.component";
+import { ProductListComponent } from "./product-list/product-list.component";
+import { CartBadgeComponent } from "./cart-badge/cart-badge.component";
+import { CartViewComponent } from "./cart-view/cart-view.component";
 
 
 @Component({
   selector: 'app-root',
-  imports:[CommonModule],
+  imports: [CommonModule, NavbarComponent, ProductListComponent, CartBadgeComponent, CartViewComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'shop-page1';
-  products: Array<any> = [
-    {
-    id: 1,
-    name: 'Laptop',
-    price: 100000,
-    isAvailable: true,
-    isBuyable: false,
-    description: 'This is a great laptop.',
-    imageUrl: 'Laptop.png',
-    },
-    {
-      id: 2,
-      name: 'Smartphone',
-      price: 50000,
-      isAvailable: true,
-      isBuyable: true,
-      description: 'This is a great smartphone.',
-      imageUrl: 'Mobile.png',
-    },
-  ];
-  currentTab: number = 1;
-  isTabSelected(tabNumber: number): boolean {
-    return this.currentTab === tabNumber;
+  cart: Array<any> = [];
+  isCartOpen = false;
+  toggleCart() {
+    this.isCartOpen = !this.isCartOpen;
   }
-  handleTabChange(event:MouseEvent,tabNumber: number) {
-    this.currentTab = tabNumber;
+  handleBuy(product: any) {
+    //this.cart.push(product); // mutating the cart
+    this.cart = [...this.cart, product]; // immutable way of adding product to cart
   }
-  handleBuy(event: MouseEvent) { 
-    console.log(event)
-    console.log('Product added to cart!');
-  }
-
 }

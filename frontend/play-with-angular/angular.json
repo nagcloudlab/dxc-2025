@@ -91,6 +91,95 @@
           }
         }
       }
+    },
+    "voting-page1": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/voting-page1",
+      "sourceRoot": "projects/voting-page1/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/voting-page1",
+            "index": "projects/voting-page1/src/index.html",
+            "browser": "projects/voting-page1/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/voting-page1/tsconfig.app.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/voting-page1/public"
+              }
+            ],
+            "styles": [
+              "projects/voting-page1/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "voting-page1:build:production"
+            },
+            "development": {
+              "buildTarget": "voting-page1:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/voting-page1/tsconfig.spec.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/voting-page1/public"
+              }
+            ],
+            "styles": [
+              "projects/voting-page1/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
     }
   }
 }
