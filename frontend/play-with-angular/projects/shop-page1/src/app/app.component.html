@@ -1,16 +1,14 @@
 <div class="container">
   <app-navbar [title]="title"></app-navbar>
   <hr />
-  <app-cart-badge [value]="cart.length"></app-cart-badge>
-  <hr />
   <button (click)="toggleCart()">Toggle Cart</button>
   <hr />
-  <app-cart-view *ngIf="isCartOpen" [value]="cart">
-    <div #header class="alert alert-success">
-      <div>Content Header</div>
+  <app-cart-view *ngIf="isCartOpen">
+    <div #header>
+      <div>Item(s) in cart</div>
     </div>
   </app-cart-view>
   <hr />
-  <app-product-list (buy)="handleBuy($event)"></app-product-list>
+  <app-product-list></app-product-list>
 
 </div>

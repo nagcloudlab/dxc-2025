@@ -1,0 +1,7 @@
+
+
+- thinking-in-angular
+- component-architecture
+- component's lifecycle hooks
+
+- directives

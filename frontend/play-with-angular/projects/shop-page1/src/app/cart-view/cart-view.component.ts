@@ -1,23 +1,27 @@
 import { CommonModule } from '@angular/common';
 import { Component, ContentChild, Input, SimpleChanges, ViewChild } from '@angular/core';
+import { HighlightDirective } from '../highlight.directive';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-cart-view',
   imports: [
-    CommonModule
+    CommonModule,
+    HighlightDirective
   ],
   templateUrl: './cart-view.component.html',
   styleUrl: './cart-view.component.css'
 })
 export class CartViewComponent {
 
-  @Input("value") cart!: Array<any>;
+  // @Input("value")
+  cart!: Array<any>;
   @ContentChild("header") header!: any;
   @ViewChild("cardHeader") cartHeader!: any;
 
-  constructor() { 
+  constructor(private cartService: CartService) { 
     console.log("CartViewComponent :: constructor called");
-    console.log(this.cart);
+    //console.log(this.cart);
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -32,6 +36,11 @@ export class CartViewComponent {
     // todo any one-time initialization logic based first input value
     // n/w calls, API calls, etc.
     // subscribe to any observable(s) here
+     this.cartService.cart$.subscribe((cart: Array<any>) => {
+      console.log("CartViewComponent :: cartService.cart$ subscription called");
+      this.cart = cart;
+    });
+
   }
 
 

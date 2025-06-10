@@ -1,10 +1,11 @@
-<div class="row">
+<!-- <div class="row" appHighlight [highlightColor]="'#DEF'"> -->
+<div class="row" appHighlight="#DEF" (appHighlightChange)="handleHighlightChange($event)">
     <div class="col-4">
         <img alt="product-image" [src]="product.imageUrl" class="img-fluid" />
     </div>
     <div class="col-8">
-        <div>{{product.name}}</div>
-        <div>{{product.price | currency:'INR':true }}</div>
+        <div>{{product.name | uppercase}} - <small>{{product.makeDate|date:'yyyy'}}</small> </div>
+        <div>{{product.price | discount:product.discount | currency:'INR':'symbol' }}</div>
         <button (click)="handleBuy($event)" [disabled]="!product.isBuyable" class="btn btn-primary">Buy</button>
         <br />
         <ul class="nav nav-tabs">
